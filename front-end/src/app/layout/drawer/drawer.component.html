@@ -1,0 +1,41 @@
+<mat-drawer-container class="container mat-typography" autosize>
+  <mat-drawer class="drawer" (mouseenter)="!isPinned && isExpanded = !isExpanded"
+    (mouseleave)="!isPinned && isExpanded = !isExpanded" #drawer mode="side" disableClose="true" opened="true">
+    <mat-nav-list>
+      <a routerLink="/my-classes" style="width: 100%">
+        <mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line *ngIf="isExpanded || isPinned">My Classes</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/my-tasks">
+        <mat-list-item>
+          <mat-icon mat-list-icon>assignment</mat-icon>
+          <h4 mat-line *ngIf="isExpanded || isPinned">My Tasks</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/calendar">
+        <mat-list-item>
+          <mat-icon mat-list-icon>domain</mat-icon>
+          <h4 mat-line *ngIf="isExpanded || isPinned">Calender</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/settings">
+        <mat-list-item>
+          <mat-icon mat-list-icon>settings</mat-icon>
+          <h4 mat-line mat-line *ngIf="isExpanded || isPinned">Settings</h4>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+
+    <div class="expand-btn">
+      <mat-divider></mat-divider>
+      <button mat-mini-fab (click)="isPinned != isPinned" color="warn" style="margin: 10px;">
+        <mat-icon aria-label="Menu">chevron_right</mat-icon>
+      </button>
+    </div>
+  </mat-drawer>
+  <ng-content>
+
+  </ng-content>
+</mat-drawer-container>

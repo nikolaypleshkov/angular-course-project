@@ -1,0 +1,25 @@
+<div mat-button [matMenuTriggerFor]="menu" class="account-popover">
+  <div mat-card-avatar class="account-image"></div>
+  <div class="account-info">
+    <div class="mat-body-1">Nikolay Pleshkov</div>
+    <div class="mat-caption">СИ - 3ти курс</div>
+  </div>
+  <mat-icon aria-label="Menu" style="margin: 10px">expand_more</mat-icon>
+</div>
+<mat-menu #menu="matMenu" class="dropdown-menu">
+  <button mat-menu-item>
+    <mat-icon>corporate_fare</mat-icon>
+    <span>Organisation</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Account Settings</span>
+  </button>
+  <mat-divider></mat-divider>
+  <a routerLink="/login">
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </a>
+</mat-menu>
