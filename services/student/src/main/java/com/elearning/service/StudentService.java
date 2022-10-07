@@ -31,8 +31,6 @@ public class StudentService {
                     .Password(studentRequest.getPassword())
                     .build();
 
-
-
             //TODO:
             // + email validation;
             // + check if email is not taken

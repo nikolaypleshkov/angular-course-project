@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
+  UntypedFormControl,
   FormGroupDirective,
   NgForm,
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
-    control: FormControl | null,
+    control: UntypedFormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;
@@ -28,21 +29,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  emailFormControl = new FormControl('', [
+  emailFormControl = new UntypedFormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   matcher = new MyErrorStateMatcher();
-  constructor(private router: Router) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
-  ngOnInit(): void {}
-
-  handleSubmit($myParam: string = ''): void {
-    const navigationDetails: string[] = ['/home'];
-    if ($myParam.length) {
-      navigationDetails.push($myParam);
-    }
-    this.router.navigate(navigationDetails);
-  }
+  ngOnInit(): void {} 
 }

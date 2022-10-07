@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent,
   ],
   imports: [
+    CommonModule,
     AppRoutingModule,
     FeautreModule,
     MatCardModule,

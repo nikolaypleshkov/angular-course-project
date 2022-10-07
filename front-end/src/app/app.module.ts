@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'
+
 import { AppInitializationModule } from './app-initialization.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +11,7 @@ import { FeautreModule } from './features';
 
 
 import { AngularFireModule } from "@angular/fire/compat";
-// import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 // import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
@@ -21,10 +23,12 @@ import { environment } from 'src/environments/environment';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     AppInitializationModule,
     AngularFireModule.initializeApp(environment.firebase, 'elearning'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     LayoutModule,
     ViewsModule,
     FeautreModule,

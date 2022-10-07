@@ -17,7 +17,7 @@
   </button>
   <mat-divider></mat-divider>
   <a routerLink="/login">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="authService.Logout()">
       <mat-icon>logout</mat-icon>
       <span>Logout</span>
     </button>

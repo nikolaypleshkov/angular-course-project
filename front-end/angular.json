@@ -119,5 +119,7 @@
       }
     }
   },
-  "defaultProject": "e-lerning"
+  "cli": {
+    "analytics": false
+  }
 }

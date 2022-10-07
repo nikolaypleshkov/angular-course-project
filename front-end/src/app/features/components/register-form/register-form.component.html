@@ -9,11 +9,11 @@
       <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Full Name</mat-label>
-          <input type="text" matInput>
+          <input type="text" matInput #fullName>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. pat@example.com">
+          <input type="email" matInput placeholder="Ex. pat@example.com" #email>
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a valid email address
           </mat-error>
@@ -23,13 +23,13 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="*********">
+          <input type="password" matInput placeholder="*********" #password>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Confirm Password</mat-label>
           <input type="password" matInput placeholder="*********">
         </mat-form-field>
-        <button class="submit-btn" mat-raised-button color="primary" (click)="handleSubmit()">Submit</button>
+        <button type="button" class="submit-btn" mat-raised-button color="primary" (click)="authService.SignUp(email.value, fullName.value, password.value)">Submit</button>
       </form>
     </mat-card-content>
   </mat-card>
