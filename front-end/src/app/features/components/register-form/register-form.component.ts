@@ -31,16 +31,21 @@ export class RegisterFormComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
+  loading: boolean = false;
 
   constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  handleSubmit($myParam: string = ''): void {
-    const navigationDetails: string[] = ['/home'];
-    if ($myParam.length) {
-      navigationDetails.push($myParam);
+  handleSubmit(email: string, full_name: string, password: string): void {
+    this.loading = true;
+    this.authService.SignUp(email, full_name, password).then(() => {
+      this.loading = false;
     }
-    this.router.navigate(navigationDetails);
+    ).catch((error) => {
+      this.loading = false;
+      window.alert(error.message)
+    }
+    )
   }
 }
