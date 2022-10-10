@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
   ],
   exports: [AccountPopoverComponent, LoginFormComponent, RegisterFormComponent],
   imports: [
+    CommonModule,
     AppRoutingModule,
     MatIconModule,
     MatMenuModule,
@@ -27,6 +30,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
 })

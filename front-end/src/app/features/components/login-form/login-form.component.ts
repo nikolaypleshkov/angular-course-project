@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   UntypedFormControl,
   FormGroupDirective,
@@ -34,8 +34,20 @@ export class LoginFormComponent implements OnInit {
     Validators.email,
   ]);
 
+  loading: boolean = false;
+
   matcher = new MyErrorStateMatcher();
   constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {} 
-}
+
+  handleSubmit(email: string, password: string){
+    this.loading = true;
+    this.authService.SignIn(email, password).then(() => {
+      this.loading = false;
+    }).catch((error) => {
+      this.loading = false;
+      window.alert(error.message)
+    })
+    }
+  }
