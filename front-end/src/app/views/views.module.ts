@@ -11,8 +11,10 @@ import { FeautreModule } from '../features';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+import { ClassComponent } from './class/class.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { CommonModule } from '@angular/common';
     MyTasksComponent,
     CalendarComponent,
     RegisterComponent,
+    ClassComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
+    MatTabsModule
   ],
 })
 export class ViewsModule {}
