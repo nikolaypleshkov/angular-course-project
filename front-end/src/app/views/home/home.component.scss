@@ -1,4 +1,8 @@
 .home-sections-container {
+  & > div {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
   .home-section {
     display: flex;
     width: 100%;
@@ -7,17 +11,17 @@
   }
 }
 
-.example-card{
+.example-card {
   min-width: 300px;
   height: 200px;
   position: relative;
 }
 
-.card-action{
+.card-action {
   position: absolute;
   bottom: 15px;
   width: 95%;
-  .divider{
+  .divider {
     margin-bottom: 10px;
   }
 }

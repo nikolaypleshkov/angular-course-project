@@ -1,7 +1,7 @@
 <div class="home-layout-root">
   <div class="mat-typography">
     <!-- This header will be styled as `title` because it is inside `.mat-typography` -->
-    <h2>Welcome, Nikolay</h2>
+    <h2>Welcome, {{ user.displayName }}</h2>
   </div>
   <div class="home-sections-container">
     <div>
@@ -15,7 +15,26 @@
           </mat-card-content>
           <mat-card-actions class="card-action">
             <mat-divider inset class="divider"></mat-divider>
-            <button mat-button>Go to classroom</button>
+
+            <a mat-button [routerLink]="['/class', class.id]">Go to classroom</a>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <h3>My Таsks</h3>
+      <div class="home-section">
+        <mat-card class="example-card" *ngFor="let task of tasks; index as i">
+          <mat-card-title>{{task.taskTitle}}</mat-card-title>
+          <mat-card-subtitle>{{task.fromClass}}</mat-card-subtitle>
+          <mat-card-content>
+            <p>Due: {{task.endDate.seconds*1000 | date:'short' }}</p>
+          </mat-card-content>
+          <mat-card-actions class="card-action">
+            <mat-divider inset class="divider"></mat-divider>
+            <button mat-button>Complete Task</button>
           </mat-card-actions>
         </mat-card>
       </div>
