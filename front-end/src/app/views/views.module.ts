@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { ClassComponent } from './class/class.component';
@@ -35,7 +36,8 @@ import { ClassComponent } from './class/class.component';
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule,
   ],
 })
 export class ViewsModule {}

@@ -1,6 +1,7 @@
-<div>
-
-  <h1 style="margin-bottom:-35px">{{ class.class_name }}</h1>
+<div class="tabs">
+  <h1 style="margin-bottom: -35px" class="tab-class-header">
+    {{ class.class_name }}
+  </h1>
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Classroom">
       <div class="class-container">
@@ -8,28 +9,132 @@
           <div class="inner-container">
             <div class="card-background-image"></div>
             <div class="card-header-title">
-
               <h1>{{ class.class_name }}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="all-tasks-card">
+            <span>Предстоящи</span>
+            <p>Ура, нищо не трябва да се предава скоро!</p>
+            <button mat-button>Преглед на всички</button>
+          </div>
+          <div class="tasks-cards">
+            <div class="task-card">
+              <span id="icon">
+                <svg
+                  focusable="false"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  class="NMm5M"
+                >
+                  <path
+                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16z"
+                  ></path>
+                </svg>
+              </span>
+              <div class="task-header">
+                <h1>
+                  Георги Пашев публикува нов материал:
+                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
+                </h1>
+                <span>18.10</span>
+              </div>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+            <div class="task-card">
+              <span id="icon">
+                <svg
+                  focusable="false"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  class="NMm5M"
+                >
+                  <path
+                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16z"
+                  ></path>
+                </svg>
+              </span>
+              <div class="task-header">
+                <h1>
+                  Георги Пашев публикува нов материал:
+                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
+                </h1>
+                <span>18.10</span>
+              </div>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+            <div class="task-card">
+              <span id="icon">
+                <svg
+                  focusable="false"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  class="NMm5M"
+                >
+                  <path
+                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16z"
+                  ></path>
+                </svg>
+              </span>
+              <div class="task-header">
+                <h1>
+                  Георги Пашев публикува нов материал:
+                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
+                </h1>
+                <span>18.10</span>
+              </div>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </mat-tab>
     <mat-tab label="Work">
-
       <div class="ClassroomHolder">
         <div class="ClassroomHeading">
-          <h3>Lectire</h3>
-          <p><a href='/'>Class Room Link</a></p>
+          <h3>Lecturer</h3>
+          <p><a href="/">Class Room Link</a></p>
         </div>
       </div>
     </mat-tab>
     <mat-tab label="People">
       <div class="ClassroomHolder">
         <div class="ClassroomHeading">
-
-          <h3>Lectire</h3>
-          <p><a href='/'>Class Room Link</a></p>
+          <h3>Lecturer</h3>
+          <div class="people-container">
+            <div class="header">
+              <h1>Съученици</h1>
+              <span>{{ students.length }} учащи</span>
+            </div>
+            <mat-divider class="divider"></mat-divider>
+            <div class="people">
+              <div class="people-card" *ngFor="let student of students; index as i">
+                <div class="people-info">
+                  <span id="image">
+                    <img [src]="[student.photo_url]" alt="profile picture">
+                  </span>
+                  <div class="people-header">
+                    <h1>
+                      {{ student.full_name}}
+                    </h1>
+                  </div>
+                </div>
+                <button mat-icon-button>
+                  <mat-icon>mail</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </mat-tab>

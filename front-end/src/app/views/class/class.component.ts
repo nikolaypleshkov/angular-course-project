@@ -11,6 +11,7 @@ export class ClassComponent implements OnInit {
   public classId: string = '';
 
   public class = null;
+  public students = [];
 
   constructor(route: ActivatedRoute, private classSerives: ClassesService) {
     route.params.subscribe((params) => {
@@ -20,6 +21,7 @@ export class ClassComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveClassById(this.classId);
+    this.retrieveStudentsFromClass(this.classId);
   }
 
   retrieveClassById(id: string) {
@@ -27,6 +29,16 @@ export class ClassComponent implements OnInit {
       console.log(doc.data());
       if (doc.exists) {
         this.class = doc.data();
+      } else {
+        return null;
+      }
+    });
+  }
+
+  retrieveStudentsFromClass(id: string) {
+    this.classSerives.getStudentCollectionFromClass(id).subscribe((doc) => {
+      if (doc) {
+        this.students = doc;
       } else {
         return null;
       }

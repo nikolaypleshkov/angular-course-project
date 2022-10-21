@@ -26,4 +26,10 @@ export class ClassesService {
       .doc(id)
       .get();
   }
+
+  getStudentCollectionFromClass(classId: string): any {
+    return this.classesRef
+      .doc(classId)
+      .collection('students').valueChanges();
+  }
 }
