@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   UntypedFormControl,
   FormGroupDirective,
@@ -8,6 +8,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -34,20 +35,51 @@ export class LoginFormComponent implements OnInit {
     Validators.email,
   ]);
 
+  error: string = '';
+
   loading: boolean = false;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  
   matcher = new MyErrorStateMatcher();
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit(): void {} 
+  ngOnInit(): void {}
 
-  handleSubmit(email: string, password: string){
-    this.loading = true;
-    this.authService.SignIn(email, password).then(() => {
-      this.loading = false;
-    }).catch((error) => {
-      this.loading = false;
-      window.alert(error.message)
-    })
-    }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
+
+  handleSubmit(email: string, password: string) {
+    this.loading = true;
+    this.authService
+      .SignIn(email, password)
+      .then(() => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        this.loading = false;
+        switch (err) {
+          case 'auth/user-not-found':
+            this.openSnackBar('User not found');
+            break;
+          case 'auth/wrong-password':
+            this.openSnackBar('Wrong password');
+            break;
+          case 'auth/invalid-email':
+            this.openSnackBar('Invalid Email');
+            break;
+          default:
+            this.error = 'Something went wrong';
+        }
+      });
+  }
+}

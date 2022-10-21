@@ -27,12 +27,16 @@
   width: 100%;
 }
 
-.submit-btn{
-    width: 100% !important;
+.submit-btn {
+  width: 100% !important;
 }
 
-.loading-spinner{
+.loading-spinner {
   display: flex;
   justify-content: center;
   padding: 5px;
+}
+
+.mat-snack-bar-container {
+  color: red !important;
 }

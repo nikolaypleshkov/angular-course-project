@@ -7,6 +7,9 @@
   </div>
   <mat-card-content>
     <form class="example-form">
+      <mat-error *ngIf="error.length" >
+       {{ error }}
+      </mat-error>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
         <input type="email" #email matInput placeholder="Ex. pat@example.com" required>
