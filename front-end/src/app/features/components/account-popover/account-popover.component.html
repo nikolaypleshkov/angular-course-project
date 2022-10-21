@@ -1,7 +1,7 @@
 <div mat-button [matMenuTriggerFor]="menu" class="account-popover">
-  <div mat-card-avatar class="account-image"></div>
+  <img mat-card-avatar mat-card-image src="{{user.photoURL}}" class="account-image" />
   <div class="account-info">
-    <div class="mat-body-1">Nikolay Pleshkov</div>
+    <div class="mat-body-1">{{ user.displayName }}</div>
     <div class="mat-caption">СИ - 3ти курс</div>
   </div>
   <mat-icon aria-label="Menu" style="margin: 10px">expand_more</mat-icon>

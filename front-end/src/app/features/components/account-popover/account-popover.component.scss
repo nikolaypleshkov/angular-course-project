@@ -10,12 +10,13 @@
     }
   
     .account-image {
-      background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
       background-size: cover;
   
       height: 45px;
       width: 45px;
   
       border-radius: 10%;
+      margin-top: 10px !important;
+      margin-right: 4px !important;
     }
   }
