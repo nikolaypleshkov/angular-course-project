@@ -36,14 +36,13 @@ export class AuthService {
     return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result);
         this.ngZone.run(() => {
           this.router.navigate(['/home']);
         });
         this.SetUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error.message);
+        throw error.code;
       });
   }
 
@@ -54,6 +53,7 @@ export class AuthService {
         result.user
           .updateProfile({
             displayName: full_name,
+            photoURL: `https://avatars.dicebear.com/api/bottts/${email[0]}.svg`,
           })
           .then(() => {
             this.SetUserData(result.user);
@@ -61,7 +61,7 @@ export class AuthService {
           });
       })
       .catch((error) => {
-        window.alert(error.message);
+        throw error.code;
       });
   }
 
