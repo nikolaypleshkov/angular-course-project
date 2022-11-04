@@ -14,38 +14,23 @@
           </div>
         </div>
         <div class="content">
-          <div class="all-tasks-card">
+          <div class="all-tasks-card" *ngIf="tasks.length > 0; else noTasks">
             <span>Предстоящи</span>
-            <p>Ура, нищо не трябва да се предава скоро!</p>
-            <button mat-button>Преглед на всички</button>
+            <div *ngFor="let task of tasks">
+              <p>{{ task.taskName }}</p>
+              <button mat-button>Преглед на всички</button>
+            </div>
           </div>
-          <div class="tasks-cards">
-            <div class="task-card">
-              <span id="icon">
-                <svg
-                  focusable="false"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  class="NMm5M"
-                >
-                  <path
-                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16z"
-                  ></path>
-                </svg>
-              </span>
-              <div class="task-header">
-                <h1>
-                  Георги Пашев публикува нов материал:
-                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
-                </h1>
-                <span>18.10</span>
+          <ng-template #noTasks>
+            <div class="all-tasks-card">
+              <span>Предстоящи</span>
+              <div>
+                <p>Ура, нищо не трябва да се предава скоро!</p>
               </div>
-              <button mat-icon-button>
-                <mat-icon>more_vert</mat-icon>
-              </button>
             </div>
-            <div class="task-card">
+          </ng-template>
+          <div class="tasks-cards" (click)="handleNavigation()">
+            <div class="task-card" *ngFor="let task of tasks">
               <span id="icon">
                 <svg
                   focusable="false"
@@ -61,39 +46,10 @@
               </span>
               <div class="task-header">
                 <h1>
-                  Георги Пашев публикува нов материал:
-                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
+                  {{ task.taskName }}
                 </h1>
                 <span>18.10</span>
               </div>
-              <button mat-icon-button>
-                <mat-icon>more_vert</mat-icon>
-              </button>
-            </div>
-            <div class="task-card">
-              <span id="icon">
-                <svg
-                  focusable="false"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  class="NMm5M"
-                >
-                  <path
-                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16z"
-                  ></path>
-                </svg>
-              </span>
-              <div class="task-header">
-                <h1>
-                  Георги Пашев публикува нов материал:
-                  KONTAKTI_3_Validation_UpdateDelete_Insert_View 3 gr.
-                </h1>
-                <span>18.10</span>
-              </div>
-              <button mat-icon-button>
-                <mat-icon>more_vert</mat-icon>
-              </button>
             </div>
           </div>
         </div>
@@ -118,14 +74,17 @@
             </div>
             <mat-divider class="divider"></mat-divider>
             <div class="people">
-              <div class="people-card" *ngFor="let student of students; index as i">
+              <div
+                class="people-card"
+                *ngFor="let student of students; index as i"
+              >
                 <div class="people-info">
                   <span id="image">
-                    <img [src]="[student.photo_url]" alt="profile picture">
+                    <img [src]="[student.photo_url]" alt="profile picture" />
                   </span>
                   <div class="people-header">
                     <h1>
-                      {{ student.full_name}}
+                      {{ student.full_name }}
                     </h1>
                   </div>
                 </div>

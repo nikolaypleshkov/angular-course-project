@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClassesService } from 'src/app/features/services/classes.service';
 
 @Component({
@@ -12,8 +12,9 @@ export class ClassComponent implements OnInit {
 
   public class = null;
   public students = [];
+  public tasks = [];
 
-  constructor(route: ActivatedRoute, private classSerives: ClassesService) {
+  constructor(route: ActivatedRoute, private router: Router, private classSerives: ClassesService) {
     route.params.subscribe((params) => {
       this.classId = params['id'];
     });
@@ -22,6 +23,7 @@ export class ClassComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveClassById(this.classId);
     this.retrieveStudentsFromClass(this.classId);
+    this.retrieveTasksFromClass(this.classId);
   }
 
   retrieveClassById(id: string) {
@@ -43,5 +45,19 @@ export class ClassComponent implements OnInit {
         return null;
       }
     });
+  }
+
+  retrieveTasksFromClass(id: string) {
+    this.classSerives.getTaskCollectionFromClass(id).subscribe((doc) => {
+      if (doc) {
+        this.tasks = doc;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  handleNavigation(){
+    this.router.navigate(['/task', this.classId]);
   }
 }

@@ -32,4 +32,10 @@ export class ClassesService {
       .doc(classId)
       .collection('students').valueChanges();
   }
+
+  getTaskCollectionFromClass(classId: string): any {
+    return this.classesRef
+      .doc(classId)
+      .collection('tasks').valueChanges();
+  }
 }
