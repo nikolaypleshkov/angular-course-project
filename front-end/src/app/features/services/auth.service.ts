@@ -23,11 +23,18 @@ export class AuthService {
     this.fireAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
+        this.store
+          .collection('users')
+          .doc(user.uid)
+          .get()
+          .subscribe((user) => {
+            localStorage.setItem('user', JSON.stringify(user.data()));
+            this.ngZone.run(() => {
+              this.router.navigate(['home']);
+            });
+          });
       } else {
         localStorage.setItem('user', '');
-        JSON.parse(localStorage.getItem('user')!);
       }
     });
   }
@@ -36,10 +43,16 @@ export class AuthService {
     return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['/home']);
-        });
-        this.SetUserData(result.user);
+        this.store
+          .collection('users')
+          .doc(result.user?.uid)
+          .get()
+          .subscribe((user) => {
+            // this.SetUserData(user.data());
+            this.ngZone.run(() => {
+              this.router.navigate(['/home']);
+            });
+          });
       })
       .catch((error) => {
         throw error.code;
@@ -65,7 +78,7 @@ export class AuthService {
       });
   }
 
-  SetUserData(user: any, full_name?: string) {
+  SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.store.doc(
       `users/${user.uid}`
     );
@@ -73,11 +86,10 @@ export class AuthService {
     const userData: User = {
       uuid: user.uid,
       email: user.email,
-      full_name: user.displayName,
-      photo_url: user.photoURL,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      role: 'student',
     };
-
-    console.log(user);
 
     return userRef.set(userData, {
       merge: true,
